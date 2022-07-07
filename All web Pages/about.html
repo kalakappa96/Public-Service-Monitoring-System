@@ -1,0 +1,297 @@
+<!--
+	Author: W3layouts
+	Author URL: http://w3layouts.com
+	License: Creative Commons Attribution 3.0 Unported
+	License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>PSMS</title>
+	<!--/tags -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="Conceit Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+	<script type="application/x-javascript">
+		addEventListener("load", function () {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+	<!--//tags -->
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/team.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<!-- //for bootstrap working -->
+	<link href="//fonts.googleapis.com/css?family=Raleway:100,100i,200,300,300i,400,400i,500,500i,600,600i,700,800" rel="stylesheet">
+	<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700" rel="stylesheet">
+</head>
+
+<body>
+<div class="top_header" id="home">
+	<!-- Fixed navbar -->
+	<nav class="navbar navbar-default navbar-fixed-top">
+		<div class="nav_top_fx_w3ls_agileinfo">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+					aria-controls="navbar">
+		<span class="sr-only">Toggle navigation</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	  </button>
+				<div class="logo-w3layouts-agileits">
+					<h1> <a class="navbar-brand" href="index.html"><i class="fa fa-clone" aria-hidden="true"></i> PSMS <span class="desc">Public Service Monitoring System</span></a></h1>
+				</div>
+			</div>
+			<div id="navbar" class="navbar-collapse collapse">
+				<div class="nav_right_top">
+					
+				  <ul class="nav navbar-nav">
+					<li ><a href="index.html">Home</a></li>
+					<li class="active"><a href="about.html">About</a></li>
+							<li><a href="mission.html">Our Mission</a></li>
+							<!-- <li><a href="feedback.html">FeedBack</a></li> -->
+                            <li><a href="signin.html">Login</a></li>
+                             <li><a href="registration.html">SignUp</a></li>
+
+					</ul>
+				</div>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</nav>
+	</div>
+	<!--/banner_info-->
+	<div class="banner_inner_con">
+	</div>
+	<div class="services-breadcrumb">
+		<div class="inner_breadcrumb">
+
+			<ul class="short">
+				<li><a href="index.html">Home</a><span>|</span></li>
+				<li>About</li>
+			</ul>
+		</div>
+	</div>
+	<!--//banner_info-->
+	<!--/ab-->
+	<div class="banner_bottom">
+		<div class="container">
+			<h3 class="tittle-w3ls">About Us</h3>
+			<div class="inner_sec_info_wthree_agile">
+				<div class="help_full">
+
+					<div class="col-md-6 banner_bottom_grid help">
+					 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqzzXXuRwP0cYHLBis4RPSaL2h3XBGp0I&sensor=false&libraries=places"></script>
+      
+      <input id="searchInput" class="input-controls" type="text" placeholder="Enter a location">
+ <div class="map" id="map" style="width: 100%; height: 300px;"></div>
+ <div class="form_area">
+     <input type="text" name="location" id="location">
+     <input type="text" name="lat" id="lat">
+     <input type="text" name="lng" id="lng">
+ </div>
+<script>
+/* script */
+function initialize() {
+   var latlng = new google.maps.LatLng(28.5355161,77.39102649999995);
+    var map = new google.maps.Map(document.getElementById('map'), {
+      center: latlng,
+      zoom: 13
+    });
+    var marker = new google.maps.Marker({
+      map: map,
+      position: latlng,
+      draggable: true,
+      anchorPoint: new google.maps.Point(0, -29)
+   });
+    var input = document.getElementById('searchInput');
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    var geocoder = new google.maps.Geocoder();
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+    var infowindow = new google.maps.InfoWindow();   
+    autocomplete.addListener('place_changed', function() {
+        infowindow.close();
+        marker.setVisible(false);
+        var place = autocomplete.getPlace();
+        if (!place.geometry) {
+            window.alert("Autocomplete's returned place contains no geometry");
+            return;
+        }
+  
+        // If the place has a geometry, then present it on a map.
+        if (place.geometry.viewport) {
+            map.fitBounds(place.geometry.viewport);
+        } else {
+            map.setCenter(place.geometry.location);
+            map.setZoom(17);
+        }
+       
+        marker.setPosition(place.geometry.location);
+        marker.setVisible(true);          
+    
+        bindDataToForm(place.formatted_address,place.geometry.location.lat(),place.geometry.location.lng());
+        infowindow.setContent(place.formatted_address);
+        infowindow.open(map, marker);
+       
+    });
+    // this function will work on marker move event into map 
+    google.maps.event.addListener(marker, 'dragend', function() {
+        geocoder.geocode({'latLng': marker.getPosition()}, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          if (results[0]) {        
+              bindDataToForm(results[0].formatted_address,marker.getPosition().lat(),marker.getPosition().lng());
+              infowindow.setContent(results[0].formatted_address);
+              infowindow.open(map, marker);
+          }
+        }
+        });
+    });
+}
+function bindDataToForm(address,lat,lng){
+   document.getElementById('location').value = address;
+   document.getElementById('lat').value = lat;
+   document.getElementById('lng').value = lng;
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+
+					</div>
+					<div class="col-md-6 banner_bottom_left">
+						
+                        
+						<p style="text-align: justify; color:#993300;">In India we don’t have any direct communication between the government and public in an efficient way for solving the problems i.e. for getting a problem solved in our place we have to bribe the officials and get them solved in 2 months which can be solved actually in one month of time. In order to overcome this problem previously National Informatics Centre has launched a site named Prajavani through which public can post the petitions or complaints in the site and get them solved in a specified time and can also know the status of the complaint or petition he has lodged at any time. NIC has launched this site with the goal of Right To Information Act (RTI Act) i.e. providing the complete information of a place to the user at any time. But it failed in providing the complete information to the public and is providing only the complaint lodging facility to the public</p>
+
+ 
+
+<p style="text-align: justify; color:#993300;">In the approach to the Swatch Bharat Mission, the objective is to promote cities that provide core infrastructure and give a decent quality of life to its citizens, a clean and sustainable environment and application of 'Smart' Solutions. The focus is on sustainable and inclusive development and the idea is to look at compact areas, , create a replicable model which will act like a light house to other aspiring cities. The Cities Swatch Bharat Mission is meant to set examples that can be replicated both within and outside the City, catalysing the creation of similar clean Cities in various regions and parts of the country.</p>
+						
+						</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+			</div>
+	</div>
+	<!--//ab-->
+	<!--/what-->
+	<div class="works">
+		<div class="container">
+			<h3 class="tittle-w3ls cen">What we do</h3>
+			<div class="inner_sec_info_wthree_agile">
+				<div class="ser-first">
+					<div class="col-md-3 ser-first-grid text-center">
+						<span class="fa fa-shield" aria-hidden="true"></span>
+						<h3>Complaint Registration</h3>
+						<p>Registered citizen can give a complaint for garbage, street light issues, water leakage, any dead animals not carry forward etc.</p>
+					</div>
+					<div class="col-md-3 ser-first-grid text-center">
+						<span class="fa fa-pencil" aria-hidden="true"></span>
+						<h3>Check Complaint Status</h3>
+						<p>Citizen can keep track of complaint status whether it is in pending or progressing or it will be solved.</p>
+					</div>
+					<div class="col-md-3 ser-first-grid text-center">
+						<span class="fa fa-star" aria-hidden="true"></span>
+						<h3>Analysis of Solved Complaints</h3>
+						<p>The complaints which are given by citizens can be analysed whether it is solved or not,and can send a feedback ones's it is solved.</p>
+					</div>
+					<div class="col-md-3 ser-first-grid text-center">
+						<span class="fa fa-thumbs-up" aria-hidden="true"></span>
+						<h3>Analysis of Unsolved Complaints</h3>
+						<p>Three days time period has set in your application within that duration if complaint is not solved then citizen can forward that complaint to higher authority.</p>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!--//what-->
+		<!-- /team --><!-- //team -->
+	
+	<!--/bottom-->
+<!--//bottom-->
+<!--/testimonials-->
+<!--//testimonials-->
+<!-- /newsletter-->
+<div class="newsletter_w3ls_agileits">
+  <div class="clearfix"></div>
+	</div>
+<!-- //newsletter-->
+
+	<!-- footer -->
+	<div class="footer">
+		<div class="footer_inner_info_w3ls_agileits">
+		  <div class="clearfix"></div>
+
+			<p class="copy-right">©2022 PSMS. All rights reserved </p>
+	  </div>
+</div>
+	</div>
+	<!-- //footer -->
+	<!-- js -->
+	<script type="text/javascript" src="js/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.js"></script>
+	<script>
+		$('ul.dropdown-menu li').hover(function () {
+			$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeIn(500);
+		}, function () {
+			$(this).find('.dropdown-menu').stop(true, true).delay(200).fadeOut(500);
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+	<script type="text/javascript" src="js/move-top.js"></script>
+	<script type="text/javascript" src="js/easing.js"></script>
+	<script type="text/javascript">
+		jQuery(document).ready(function ($) {
+			$(".scroll").click(function (event) {
+				event.preventDefault();
+				$('html,body').animate({
+					scrollTop: $(this.hash).offset().top
+				}, 900);
+			});
+		});
+	</script>
+	<!-- start-smoth-scrolling -->
+
+
+	<!-- stats -->
+	<script src="js/jquery.waypoints.min.js"></script>
+	<script src="js/jquery.countup.js"></script>
+	<script>
+		$('.counter').countUp();
+	</script>
+	<!-- //stats -->
+	<script type="text/javascript">
+		$(document).ready(function () {
+			/*
+									var defaults = {
+							  			containerID: 'toTop', // fading element id
+										containerHoverID: 'toTopHover', // fading element hover id
+										scrollSpeed: 1200,
+										easingType: 'linear' 
+							 		};
+									*/
+
+			$().UItoTop({
+				easingType: 'easeOutQuart'
+			});
+
+		});
+	</script>
+
+	<a href="#home" class="scroll" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+
+
+
+</body>
+
+</html>
